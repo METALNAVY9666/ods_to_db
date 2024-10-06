@@ -21,6 +21,8 @@ ${OG_EXPORTED_PATH}: ${VENV}
 	. ${VENV}
 	${COMP} ${FLAGS} ${HIDDEN_IMPORTS} ${FILENAME}
 
+venv: ${VENV}
+
 all: ods_to_db
 
 clean:
@@ -40,4 +42,4 @@ reinstall: fclean install
 uninstall:
 	sudo rm -f /usr/bin/${FINAL_NAME}
 
-.PHONY: all clean fclean re install uninstall reinstall
+.PHONY: all clean fclean re install uninstall reinstall venv

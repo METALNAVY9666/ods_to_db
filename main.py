@@ -2,6 +2,7 @@
 import sys
 import os
 import json
+import datetime
 import sqlite3
 import pyexcel_ods3
 
@@ -9,13 +10,17 @@ import pyexcel_ods3
 def list_to_query(lst: list, debug=False) -> str:
     """converts a python list object into a sql 'values' set"""
     if debug:
-        print("ods file : ")
+        print(len(lst), " bills in ods file : ")
     for index, row in enumerate(lst):
         lst[index] = [index] + lst[index]
+    for index, row in enumerate(lst):
+        if type(row[1]).__name__ == "date":
+            lst[index][1] = row[1].strftime("%m/%d/%Y")
+    for index, row in enumerate(lst):
         if debug:
             print("\t", index, " : ", row)
-    if debug:
-        print()
+            print("\t", type(row[0]).__name__)
+    sys.exit()
     return json.dumps(lst).replace('"', "'").replace("[", "(").replace("]", ")")[1: -1]
 
 
