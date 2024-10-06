@@ -19,8 +19,6 @@ def list_to_query(lst: list, debug=False) -> str:
     for index, row in enumerate(lst):
         if debug:
             print("\t", index, " : ", row)
-            print("\t", type(row[0]).__name__)
-    sys.exit()
     return json.dumps(lst).replace('"', "'").replace("[", "(").replace("]", ")")[1: -1]
 
 
